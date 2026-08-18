@@ -167,7 +167,7 @@ export default function Landing() {
             </h2>
             <p className="mt-3 max-w-2xl text-slate-400">
               Built as a full MERN stack application with a Three.js rendering
-              layer and an AWS-native storage and delivery pipeline.
+              layer and Supabase Storage for secure file delivery.
             </p>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
               {features.map((feature) => (
