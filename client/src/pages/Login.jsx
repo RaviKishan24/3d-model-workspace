@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner.jsx';
 import { mergeServerDetails, validateLogin } from '../utils/validation';
 
 export default function Login() {
-  const { login } = useAuth();
+const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const toast = useToast();
@@ -16,6 +16,13 @@ export default function Login() {
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+
+   useEffect(() => {
+    if (isAuthenticated) {
+      navigate(location.state?.from || '/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate, location.state?.from]);
+
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +48,7 @@ export default function Login() {
     }
 
     toast.success(`Welcome back, ${result.user.name}`);
-    navigate(location.state?.from || '/dashboard', { replace: true });
+  
   };
 
   return (
